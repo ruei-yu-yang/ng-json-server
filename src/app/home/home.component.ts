@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IUser } from '../core/interfaces/user.interface';
 import { getUsers } from '../store/app.actions';
 import { AppState } from '../store/app.reducer';
+import { selectUsers } from '../store/app.selectors';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.users$ = this.store.select(selectUsers);
     this.store.dispatch(getUsers())
   }
 
